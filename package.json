@@ -1,1 +1,38 @@
-{     "devDependencies": {         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmdoc-printf",     "homepage": "https://github.com/npmdoc/node-npmdoc-printf",     "repository": {         "type": "git",         "url": "https://github.com/npmdoc/node-npmdoc-printf.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "#### api documentation for  [printf (v0.2.5)](http://www.adaltas.com/projects/node-printf)  [![npm package](https://img.shields.io/npm/v/npmdoc-printf.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-printf) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-printf.svg)](https://travis-ci.org/npmdoc/node-npmdoc-printf)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-printf",
+    "keywords": [
+        "documentation",
+        "printf"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_printf.js",
+    "name": "npmdoc-printf",
+    "nameAlias": "npmdoc_printf",
+    "nameOriginal": "npmdoc-printf",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmdoc/node-npmdoc-printf.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "npm install \"kaizhu256/node-utility2#alpha\" && utility2 shDeployHeroku",
+        "postinstall": "[ ! -f npm_scripts.sh ] || ./npm_scripts.sh postinstall",
+        "start": "PORT=${PORT:-8080} utility2 start test.js",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "2017.4.23"
+}
