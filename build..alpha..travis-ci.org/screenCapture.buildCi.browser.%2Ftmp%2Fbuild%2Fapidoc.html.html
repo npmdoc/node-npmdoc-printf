@@ -238,7 +238,23 @@
   this._format = format;
   this._tokens = tokenize(format, this._re, this._parseDelim, this);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+it 'vs. Formatter', -&gt;
+  i = 0
+  while i &lt; 1000
+    printf '%d %s Pockets', i, 'Hot'
+    i++
+
+it 'Formatter', -&gt;
+  str = new printf.<span class="apidocCodeKeywordSpan">Formatter</span>('%d %s Pockets')
+  i = 0
+  while i &lt; 1000
+    str.format i, 'Hot'
+    i++
+
+it 'Miscellaneous', -&gt;
+  printf('+%s+', 'hello').should.eql '+hello+'
+...</pre></li>
     </ul>
 
 
@@ -262,7 +278,23 @@
   this._format = format;
   this._tokens = tokenize(format, this._re, this._parseDelim, this);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+it 'vs. Formatter', -&gt;
+  i = 0
+  while i &lt; 1000
+    printf '%d %s Pockets', i, 'Hot'
+    i++
+
+it 'Formatter', -&gt;
+  str = new printf.<span class="apidocCodeKeywordSpan">Formatter</span>('%d %s Pockets')
+  i = 0
+  while i &lt; 1000
+    str.format i, 'Hot'
+    i++
+
+it 'Miscellaneous', -&gt;
+  printf('+%s+', 'hello').should.eql '+hello+'
+...</pre></li>
     </ul>
 
 
@@ -315,7 +347,23 @@
   }
   this.spacePad(token);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        if(token.period != '.'){
+          token.precision = 6;
+        }
+        this.formatDouble(token);
+      }else if(token.isObject){
+        this.formatObject(token);
+      }
+      this.<span class="apidocCodeKeywordSpan">fitField</span>(token);
+
+      str += '' + token.arg;
+    }
+  }
+
+  return str;
+};
+...</pre></li>
     </ul>
 
 
@@ -537,7 +585,23 @@
 
   token.arg = token.toUpper ? token.arg.toUpperCase() : token.arg.toLowerCase();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      token.zeroPad = false;
+    }
+    this.formatInt(token);
+  }else if(token.isDouble){
+    if(token.period != '.'){
+      token.precision = 6;
+    }
+    this.<span class="apidocCodeKeywordSpan">formatDouble</span>(token);
+  }else if(token.isObject){
+    this.formatObject(token);
+  }
+  this.fitField(token);
+
+  str += '' + token.arg;
+}
+...</pre></li>
     </ul>
 
 
@@ -594,7 +658,23 @@
     }
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+}
+if(token.isInt){
+  // a specified precision means no zero padding
+  if(token.period == '.'){
+    token.zeroPad = false;
+  }
+  this.<span class="apidocCodeKeywordSpan">formatInt</span>(token);
+}else if(token.isDouble){
+  if(token.period != '.'){
+    token.precision = 6;
+  }
+  this.formatDouble(token);
+}else if(token.isObject){
+  this.formatObject(token);
+...</pre></li>
     </ul>
 
 
@@ -611,7 +691,22 @@
   var precision = (token.period === '.') ? token.precision : null;
   token.arg = util.inspect(token.arg, !token.alternative, precision);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      this.formatInt(token);
+    }else if(token.isDouble){
+      if(token.period != '.'){
+        token.precision = 6;
+      }
+      this.formatDouble(token);
+    }else if(token.isObject){
+      this.<span class="apidocCodeKeywordSpan">formatObject</span>(token);
+    }
+    this.fitField(token);
+
+    str += '' + token.arg;
+  }
+}
+...</pre></li>
     </ul>
 
 
@@ -636,7 +731,23 @@
   token.arg = (token.rightJustify) ? token.arg + this._spaces10.substring(0, pad) : this._spaces10.substring(0, pad) + token.arg
 ;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if(token.maxWidth &gt;= 0 &amp;&amp; token.arg.length &gt; token.maxWidth){
+  return token.arg.substring(0, token.maxWidth);
+}
+if(token.zeroPad){
+  this.zeroPad(token, token.minWidth);
+  return;
+}
+this.<span class="apidocCodeKeywordSpan">spacePad</span>(token);
+};
+Formatter.prototype.spacePad = function(token, /*Int*/ length) {
+length = (arguments.length == 2) ? length : token.minWidth;
+if(typeof token.arg != 'string'){
+  token.arg = '' + token.arg;
+}
+var tenless = length - 10;
+...</pre></li>
     </ul>
 
 
@@ -667,7 +778,23 @@
   token.arg = (token.rightJustify) ? token.arg + this._zeros10.substring(0, pad) : this._zeros10.substring(0, pad) + token.arg;
   if (negative) token.arg = '-' + token.arg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// otherwise, (-10).toString(16) is '-a' instead of 'fffffff6'
+if(i &lt; 0 &amp;&amp; (token.isUnsigned || token.base != 10)){
+  i = 0xffffffff + i + 1;
+}
+
+if(i &lt; 0){
+  token.arg = (- i).toString(token.base);
+  this.<span class="apidocCodeKeywordSpan">zeroPad</span>(token);
+  token.arg = '-' + token.arg;
+}else{
+  token.arg = i.toString(token.base);
+  // need to make sure that argument 0 with precision==0 is formatted as ''
+  if(!i &amp;&amp; !token.precision){
+    token.arg = '';
+  }else{
+...</pre></li>
     </ul>
 
 
