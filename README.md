@@ -1,6 +1,6 @@
 # npmdoc-printf
 
-#### api documentation for  [printf (v0.2.5)](http://www.adaltas.com/projects/node-printf)  [![npm package](https://img.shields.io/npm/v/npmdoc-printf.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-printf) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-printf.svg)](https://travis-ci.org/npmdoc/node-npmdoc-printf)
+#### basic api documentation for  [printf (v0.2.5)](http://www.adaltas.com/projects/node-printf)  [![npm package](https://img.shields.io/npm/v/npmdoc-printf.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-printf) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-printf.svg)](https://travis-ci.org/npmdoc/node-npmdoc-printf)
 
 #### Full implementation of the `printf` family in pure JS.
 
